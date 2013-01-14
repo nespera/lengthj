@@ -7,7 +7,7 @@ public class Length {
 
     public Length(Double magnitude, LengthUnit unit) {
         if (unit == null || magnitude == null) {
-            throw new RuntimeException("Cannot construct with null arguments");
+            throw new LengthException("Cannot construct with null arguments");
         }
         this.magnitude = magnitude;
         this.unit = unit;
@@ -15,6 +15,18 @@ public class Length {
 
     @Override
     public String toString() {
-        return magnitude.toString() + " " + unit.toString();
+        return String.format("%.2f", magnitude) + " " + unit.toString();
     }
+
+    public Length to(LengthUnit newUnit) {
+        if (newUnit == null) {
+            throw new LengthException("Cannot convert with null unit");
+        }
+        return newUnit == unit ? this : new Length(convert(newUnit), newUnit);
+    }
+
+    private Double convert(LengthUnit newUnit) {
+        return (magnitude*unit.inMillimetres())/newUnit.inMillimetres();
+    }
+
 }
