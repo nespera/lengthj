@@ -5,7 +5,7 @@ public enum LengthUnit {
     METRE("m"),
     INCH("in");
 
-    private String display;
+    private final String display;
 
     LengthUnit(String display) {
         this.display = display;

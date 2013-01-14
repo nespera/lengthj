@@ -2,8 +2,8 @@ package lengthj;
 
 public class Length {
 
-    private LengthUnit unit;
-    private Double magnitude;
+    private final LengthUnit unit;
+    private final Double magnitude;
 
     public Length(Double magnitude, LengthUnit unit) {
         if (unit == null || magnitude == null) {
